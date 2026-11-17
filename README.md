@@ -76,6 +76,7 @@ Searches for movies by title using the OMDb API.
 
 **Example:**
 
+http://localhost:3001/api/search?title=batman
 http://localhost:3001/api/search?title=superman
 Query parameter:
 
@@ -87,7 +88,7 @@ GET /api/movies/:id
 Retrieves detailed information about a specific movie using its IMDb ID.
 
 **Example:**
-
+http://localhost:3001/api/movies/tt0372784
 http://localhost:3001/api/movies/tt3896198
 
 3. API Key Security
