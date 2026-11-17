@@ -7,11 +7,11 @@
 
 
 // In server.js, require and configure dotenv at the very top.
-import 'dotenv/config'
+import 'dotenv/config';
 import express from "express";
 
-// Import the routes from ./routes/movieRoutes.js.
-// import movieRoutes from './routes/movieRoutes.js';
+import movieRoutes from './routes/movieRoutes.js';
+
 
 // Set up your Express application instance.
 const app = express();

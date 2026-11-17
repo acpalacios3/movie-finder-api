@@ -3,6 +3,7 @@
 import axios from "axios";
 
 // function that searches for movies by title.
+// test: http://localhost:3001/api/search?title=superman at Postman
 export const searchMovie = async (req, res) => {
 
     //get the movie title from query parameters
@@ -45,6 +46,32 @@ export const searchMovie = async (req, res) => {
 };
 
 
-export const detailsMovie = (req, res) => {
-    res.send("Movie details route");
+// function that gets movie details by IMDb ID
+// test: http://localhost:3001/api/movies/tt2975590 at Postman
+export const detailsMovie = async (req, res) => {
+
+    // get the movie IMDb ID from route parameters
+    const { id } = req.params;
+
+    try {
+
+        // make a GET request to the OMDb API
+        const response = await axios.get('https://www.omdbapi.com/', {
+            params: {
+                i: id,
+                apikey: process.env.OMDB_API_KEY
+            }
+        });
+
+        // send the movie details to the client
+        return res.json(response.data);
+
+    } catch (error) {
+
+        console.error('Error:', error.message);
+
+        return res.status(500).json({
+            error: 'Error fetching movie details'
+        });
+    }
 };

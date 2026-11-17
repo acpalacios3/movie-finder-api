@@ -15,9 +15,11 @@ import { searchMovie, detailsMovie } from '../controllers/movieController.js';
 const router = express.Router();
 
 // localhost:3001/api/search, "searchMovie" is it's the function that will handle the request
+// when someone requests /search via GET, we run searchMovies.
 router.get("/search", searchMovie);
 
 // localhost:3001/api/movie with id is a dynamic parameter
+// when someone requests /search via GET, we run detailsMovie.
 router.get("/movies/:id", detailsMovie);
 
 // export the router
