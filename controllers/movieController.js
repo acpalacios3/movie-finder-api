@@ -1,5 +1,8 @@
-import { apiClient } from '../api/apiClient.js'
+// import { apiClient } from '../api/apiClient.js'
 
+import axios from "axios";
+
+// function that searches for movies by title.
 export const searchMovie = async (req, res) => {
 
     //get the movie title from query parameters
@@ -17,6 +20,7 @@ export const searchMovie = async (req, res) => {
     try {
 
         // make a GET request to the OMDb API using axios
+        // OMDb returns movie information in JSON format
         const response = await axios.get('http://www.omdbapi.com/', {
             params: {
                 s: title,
@@ -24,9 +28,13 @@ export const searchMovie = async (req, res) => {
             }
         });
 
-        res.json(response.data);
+        //response.data contains the JSON data returned by OMDb and send the movie list to the client as JSON(res.json)
+        console.log(response);
+        return res.json(response.data);
+       
 
-    } catch {
+    } catch(error) {
+        // console.error('OMDb ERROR:', error);
         res.status(500).json({
             error: 'Error fetching movies'
 
@@ -34,4 +42,9 @@ export const searchMovie = async (req, res) => {
 
     }
 
-}
+};
+
+
+export const detailsMovie = (req, res) => {
+    res.send("Movie details route");
+};
